@@ -14,6 +14,6 @@ I'm a follower of Jesus, a husband, an open-source lover and passionate about ev
 </div>
 
 <div markdown="1">
-Currently I have been working Elixir, although I have also worked with C#, Go and Javascript.
+Currently I have been working with Elixir, although I have also worked with C#, Go and Javascript.
 </div>
 </div>
