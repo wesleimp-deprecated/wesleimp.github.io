@@ -1,0 +1,134 @@
+---
+layout: post
+title: "Elixir and Erlang code in the same umbrella project"
+hero: "https://i.imgur.com/M93AK4d.jpg"
+overlay: purple
+published: true
+---
+
+There's a simple way to write Elixir and Erlang code in the same umbrella project and use them together.
+
+<!–-break-–>
+
+# 1. Create new umbrella project
+
+For this example, I'll create an umbrella project.
+
+```sh
+$> mix new ping_beam --umbrella
+$> cd ping_beam
+$> tree
+.
+├── apps
+├── config
+│  └── config.exs
+├── mix.exs
+└── README.md
+```
+
+# 2. Create an Elixir project in umbrella
+
+I'll start creating first a new Elixir project inside `apps` folder.
+
+```sh
+$> mix new ping_elixir
+```
+
+Now, I'll add a `ping` function inside the `PingElixir` module whose just prints a message.
+
+```elixir
+# apps/ping_elixir/lib/ping_elixir.ex
+defmodule PingElixir do
+  @moduledoc false
+
+  def ping do
+    IO.puts("Ping from Elixir")
+  end
+end
+```
+
+# 3. Create and Erlang project in umbrella
+
+I'll create an Erlang project using `rebar3` also inside the `apps` folder.
+
+```sh
+$> rebar3 new lib ping_erlang
+```
+
+As the Elixir project, I'll also create an module and add a `ping` function there.
+
+```erlang
+% apps/ping_erlang/src/ping_erlang.erl
+-module(ping_erlang).
+
+-export([ping/0]).
+
+ping() -> <<"Ping from Erlang">>.
+```
+
+# 4. Reference and use the projects above
+
+For this step, I'll create a new project named `ping` where I'll create a `ping` function and call the modules above.
+
+```sh
+$> mix new ping
+```
+
+Now, I'll change the `mix.exs` adding the `PingElixir` and `ping_erlang` modules as umbrella dependencies.
+
+```elixir
+# apps/ping/mix.exs
+defmodule Ping.MixProject do
+  # project config...
+
+  defp deps do
+    [
+      {:ping_elixir, in_umbrella: true},
+      # As the Erlang project, its really importand to add the manager as rebar3
+      {:ping_erlang, in_umbrella: true, manager: :rebar3}
+    ]
+  end
+end
+```
+
+After that, I'll modify the ping module to call those modules.
+
+```elixir
+# apps/ping/lib/ping.ex
+
+defmodule Ping do
+  @moduledoc false
+
+  def ping do
+    [
+      PingElixir.ping(),
+      :ping_erlang.ping()
+    ]
+  end
+end
+```
+
+# 5. Running
+
+For testing all the code is pretty simple
+
+```sh
+$> iex -S mix
+
+iex> PingElixir.ping()
+"Ping from Elixir"
+
+iex> :ping_erlang.ping()
+"Ping from Erlang"
+
+iex> Ping.ping()
+["Ping from Elixir", "Ping from Erlang"]
+```
+
+# 6. Conclusion
+
+It's pretty simple put Elixir and Erlang code working together. With a few lines of code you get it done.
+
+Check the [repo](https://github.com/wesleimp/ping_beam) for more.
+
+Thanks!
