@@ -8,8 +8,6 @@ published: true
 
 There's a simple way to write Elixir and Erlang code in the same umbrella project and use them together.
 
-<!–-break-–>
-
 # 1. Create new umbrella project
 
 For this example, I'll create an umbrella project.
@@ -30,7 +28,7 @@ $> tree
 
 I'll start creating first a new Elixir project inside `apps` folder.
 
-```sh
+```shell
 $> mix new ping_elixir
 ```
 
@@ -51,7 +49,7 @@ end
 
 I'll create an Erlang project using `rebar3` also inside the `apps` folder.
 
-```sh
+```shell
 $> rebar3 new lib ping_erlang
 ```
 
@@ -70,7 +68,7 @@ ping() -> <<"Ping from Erlang">>.
 
 For this step, I'll create a new project named `ping` where I'll create a `ping` function and call the modules above.
 
-```sh
+```shell
 $> mix new ping
 ```
 
@@ -112,7 +110,7 @@ end
 
 For testing all the code is pretty simple
 
-```sh
+```shell
 $> iex -S mix
 
 iex> PingElixir.ping()
