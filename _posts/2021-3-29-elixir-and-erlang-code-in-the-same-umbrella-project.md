@@ -91,7 +91,6 @@ After that, I'll modify the ping module to call those modules.
 
 {% highlight elixir %}
 # apps/ping/lib/ping.ex
-
 defmodule Ping do
   @moduledoc false
 
