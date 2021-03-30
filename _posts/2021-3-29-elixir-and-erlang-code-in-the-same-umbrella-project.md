@@ -6,11 +6,11 @@ overlay: purple
 published: true
 ---
 
-There's a simple way to write the elixir and Erlang codes under the same umbrella project and you can use them together.
+There's a simple way to write the Elixir and Erlang codes under the same umbrella project and you can use them together.
 
 <!–-break-–>
 
-# 1. Create new umbrella project
+# 1. Create a new umbrella project
 For this example, I'll create an umbrella project.
 
 {% highlight sh %}
@@ -52,7 +52,7 @@ I'll create an Erlang project using `rebar3` also inside the `apps` folder.
 $> rebar3 new lib ping_erlang
 {% endhighlight %}
 
-As the Elixir project, I'll also create an module and add a `ping` function there.
+As for the Elixir project, I'll also create a module and add a `ping` function there.
 
 {% highlight erlang %}
 % apps/ping_erlang/src/ping_erlang.erl
@@ -80,7 +80,7 @@ defmodule Ping.MixProject do
   defp deps do
     [
       {:ping_elixir, in_umbrella: true},
-      # As the Erlang project, its really importand to add the manager as rebar3
+      # As the Erlang project, it's really importand to add the manager as rebar3
       {:ping_erlang, in_umbrella: true, manager: :rebar3}
     ]
   end
@@ -120,7 +120,7 @@ iex> Ping.ping()
 {% endhighlight %}
 
 # 6. Conclusion
-It's a really simple process! Just put the Elixir and Earlang codes together. And with a few lines of code you'll get it done.
+It's a really simple process! Just put the Elixir and Erlang codes together. And with a few lines of code, you'll get it done.
 
 Check the [repo](https://github.com/wesleimp/ping_beam) for more.
 
