@@ -80,7 +80,7 @@ defmodule Ping.MixProject do
   defp deps do
     [
       {:ping_elixir, in_umbrella: true},
-      # As the Erlang project, it's really importand to add the manager as rebar3
+      # As the Erlang project, it's really important to add the manager as rebar3
       {:ping_erlang, in_umbrella: true, manager: :rebar3}
     ]
   end
