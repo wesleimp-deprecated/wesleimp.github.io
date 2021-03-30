@@ -14,8 +14,6 @@ blog:
   font: '"Rubik", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif'
   load_google_fonts: 'Rubik:400,400italic,700,700italic'
 
-
-# Author info
 author:
   fullname: Weslei Juan Moser Pereira
   rss: false # generate RSS feed and show it's icon in header
@@ -25,13 +23,6 @@ author:
   photo: "uploads/me2.png"
   photo2x: "uploads/me.png"
 
-
-
-## !!
-## Advanced blog settings
-## You should not change anything here unless you know what you are doing
-
-# Gems
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
