@@ -8,11 +8,12 @@ published: true
 
 There's a simple way to write Elixir and Erlang code in the same umbrella project and use them together.
 
-# 1. Create new umbrella project
+<!–-break-–>
 
+# 1. Create new umbrella project
 For this example, I'll create an umbrella project.
 
-```sh
+```shell
 $> mix new ping_beam --umbrella
 $> cd ping_beam
 $> tree
@@ -25,7 +26,6 @@ $> tree
 ```
 
 # 2. Create an Elixir project in umbrella
-
 I'll start creating first a new Elixir project inside `apps` folder.
 
 ```shell
@@ -46,7 +46,6 @@ end
 ```
 
 # 3. Create and Erlang project in umbrella
-
 I'll create an Erlang project using `rebar3` also inside the `apps` folder.
 
 ```shell
@@ -65,7 +64,6 @@ ping() -> <<"Ping from Erlang">>.
 ```
 
 # 4. Reference and use the projects above
-
 For this step, I'll create a new project named `ping` where I'll create a `ping` function and call the modules above.
 
 ```shell
@@ -107,7 +105,6 @@ end
 ```
 
 # 5. Running
-
 For testing all the code is pretty simple
 
 ```shell
@@ -124,7 +121,6 @@ iex> Ping.ping()
 ```
 
 # 6. Conclusion
-
 It's pretty simple put Elixir and Erlang code working together. With a few lines of code you get it done.
 
 Check the [repo](https://github.com/wesleimp/ping_beam) for more.

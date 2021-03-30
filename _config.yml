@@ -11,8 +11,6 @@ blog:
   excerpts: true # show excerpts instead of full post content on blog page
   inline_footnotes: true # enable/disable barefoot inline footnotes
   titles_only: false # show post titles only on main blog page
-
-# Fonts
   font: '"Rubik", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif'
   load_google_fonts: 'Rubik:400,400italic,700,700italic'
 
@@ -42,12 +40,22 @@ permalink: posts/:slug
 excerpt_separator: <!–-break-–>
 paginate: 5
 paginate_path: '/page-:num/'
+collections:
+  my_tags:
+    output: true
+    permalink: /tag/:slug/
+defaults:
+  -
+    scope:
+      path: ""
+      type: my_tags
+    values:
+      layout: blog-by-tag
 exclude: ["README.md", "README.html"]
-
 markdown: kramdown
 highlighter: rouge
 kramdown:
-  input:          GFM
+  input: GFM
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     span:
@@ -58,7 +66,7 @@ kramdown:
 
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
 
 compress_html:
   clippings: all
